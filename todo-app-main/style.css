@@ -11,8 +11,15 @@
 
 :root {
   --header-bg: url('images/bg-desktop-light.jpg');
+  --theme-switch-img: url('images/icon-moon.svg');
   --body-color: hsl(0, 0%, 98%);
   --todo-container-color: white;
+  --border-color: hsl(233, 11%, 84%);
+  --status-button-color: hsl(236, 9%, 61%);
+  --status-button-color-hover: hsl(235, 19%, 35%);
+  --input-tasks-bg-color: white;
+  --blue-500: hsl(220, 98%, 61%);
+  --tasks-text-color: hsl(235, 19%, 35%);
 }
 
 body {
@@ -22,6 +29,17 @@ body {
 
 h1 {
   color:white;
+}
+
+.darkMode {
+  --header-bg: url('images/bg-desktop-dark.jpg');
+  --theme-switch-img: url('images/icon-sun.svg');
+  --body-color: hsl(235, 21%, 11%);
+  --todo-container-color: hsl(235, 24%, 19%);
+  --border-color: hsl(237, 14%, 26%);
+  --input-tasks-bg-color: hsl(235, 24%, 19%);
+  --tasks-text-color: hsl(234, 39%, 85%);
+  --status-button-color-hover: hsl(236, 33%, 92%);
 }
 
 header{
@@ -39,9 +57,17 @@ left:50%;
 transform: translate(-50%);
 border: 1px solid red;
 }
-
 .addTodo {
   padding-bottom: 20px;
+}
+
+#themeSwitch {
+  background:none;
+  border:none;
+  cursor:pointer;
+}
+#themeSwitch img {
+  background-image: var(--theme-switch-img);
 }
 
 .addTodo img {
@@ -59,12 +85,15 @@ border: 1px solid red;
   width:100%;
   padding: 15px;
   padding-left: 53px;
+  background-color:var(--input-tasks-bg-color);
+  color:var(--input-tasks-bg-color);
+  border:none;
 }
 
 .addTodo div:last-child input[type='checkbox'] {
   position:absolute;
   left:14px;
-  top: 70px;
+  top: 67px;
   appearance: none; 
 }
 
@@ -78,23 +107,20 @@ border: 1px solid red;
 
 .tasks {
   width:100%;
-  height: 150px;
-  background-color: var(--todo-container-color);
+  color:var(--tasks-text-color);
 }
 
-.tasks div button label{
+.tasks label {
   display:flex;
   align-items:center;
-}
-.tasks div button {
   width:100%;
   padding: 15px;
-  background-color:white;
+  background-color:var(--input-tasks-bg-color);
   border:none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--border-color);
 }
 
-.tasks div button label input{ 
+.tasks input{ 
   margin-right: 15px; 
 }
 
@@ -105,6 +131,15 @@ border: 1px solid red;
   background-color:var(--todo-container-color);
 }
 
+.status button.statusActive {
+  color: var(--blue-500);
+}
+
+.status button,
+.status p {
+  color:var(--status-button-color);
+}
+
 
 .status button,
 .status p{
@@ -112,4 +147,28 @@ border: 1px solid red;
   background:none;
   padding:15px;
 }
+
+
+.addTodo div:last-child input[type='checkbox']:checked, 
+.tasks input[type='checkbox']:checked {
+  background-image: url('images/icon-check.svg'), 
+  linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));;
+  background-repeat: no-repeat;     
+  background-position: center;     
+
+}
+
+.addTodo div:last-child input[type='checkbox']:hover, 
+.tasks label,
+.status button,
+.tasks input {
+  cursor:pointer;
+}
+
+.status button:hover {
+  color:var(--status-button-color-hover);
+}
+
+
+
 
